@@ -9,7 +9,7 @@ function InputSection() {
   const [isShortening, setIsShortening] = useState(false)
   const [inputUrl, setInputUrl] = useState('')
   const [shortUrl, setShortUrl] = useState('')
-  const [clicks, setClicks] = useState('')
+  // const [clicks, setClicks] = useState('')
 
   const handleShortening = async () => {
     if (!validateUrl(inputUrl)) {
@@ -21,7 +21,7 @@ function InputSection() {
     if (response.status === 200) {
       const { shortUrl, clicks, message } = response.data;
       setShortUrl(shortUrl);
-      setClicks(clicks);
+      // setClicks(clicks);
       toast.success(message)
     }
     setIsShortening(false)
