@@ -1,7 +1,6 @@
 
-type Props = {}
 
-const Navbar = (props: Props) => {
+const Navbar = () => {
   return (
     <div className='flex justify-between'>
       <div className="text-4xl font-semibold">
