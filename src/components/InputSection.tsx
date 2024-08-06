@@ -9,7 +9,7 @@ function InputSection() {
   const [isShortening, setIsShortening] = useState(false)
   const [inputUrl, setInputUrl] = useState('')
   const [shortUrl, setShortUrl] = useState('')
-  // const [clicks, setClicks] = useState('')
+  const [clicks, setClicks] = useState('')
 
   const handleShortening = async () => {
     if (!validateUrl(inputUrl)) {
@@ -21,7 +21,7 @@ function InputSection() {
     if (response.status === 200) {
       const { shortUrl, clicks, message } = response.data;
       setShortUrl(shortUrl);
-      // setClicks(clicks);
+      setClicks(clicks);
       toast.success(message)
     }
     setIsShortening(false)
@@ -43,16 +43,19 @@ function InputSection() {
         </div>
       </div>
       {shortUrl &&
-        <div className="flex justify-center w-full">
-          <div className="mockup-browser bg-base-300 border mt-20 flex items-center rounded-md">
-            <div className="mockup-browser-toolbar">
-              <div className="input">{shortUrl}</div>
+        <>
+          <div className="flex justify-center w-full">
+            <div className="mockup-browser bg-base-300 border mt-20 flex items-center rounded-md">
+              <div className="mockup-browser-toolbar">
+                <div className="input">{shortUrl} </div>
+              </div>
+              <CopyToClipboard text={shortUrl}>
+                <button className="border btn btn-secondary rounded-md w-24" onClick={() => { toast.success('Copied to clipboard') }}>Copy</button>
+              </CopyToClipboard>
             </div>
-            <CopyToClipboard text={shortUrl}>
-              <button className="border btn btn-secondary rounded-md w-24" onClick={() => { toast.success('Copied to clipboard') }}>Copy</button>
-            </CopyToClipboard>
           </div>
-        </div>
+          <p className="text-center text-lg font-mono mt-4 "><span className=""> {clicks} clicks</span></p>
+        </>
       }
     </>
   )
